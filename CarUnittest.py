@@ -46,7 +46,7 @@ class CarTest(unittest.TestCase):
     def test_move_North(self):
         car = Car(0, 0, "N")
         car.go("M")
-        self.assertEqual(car.y, 1)
+        self.assertEqual(car.y, 0)
     
     def test_move_East(self):
         car = Car(0, 0, "E")
@@ -56,7 +56,7 @@ class CarTest(unittest.TestCase):
     def test_move_South(self):
         car = Car(1, 1, "S")
         car.go("M")
-        self.assertEqual(car.y, 0)
+        self.assertEqual(car.y, 2)
     
     def test_move_West(self):
         car = Car(1, 1, "W")
@@ -64,4 +64,11 @@ class CarTest(unittest.TestCase):
         self.assertEqual(car.x, 0)
 
 if __name__ == '__main__':
+    car = Car(1, 1, "N")
+    car.print()
+    car.go("R")
+    car.go("M")
+    car.print()
+    car.go("RMRMMMRMMM")
+    car.print()
     unittest.main()

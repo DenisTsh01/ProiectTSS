@@ -7,7 +7,18 @@ class Car:
         self.x = x
         self.y = y
         self.facing = facing
-    
+
+    def print(self):
+        for i in range(7):
+            for j in range(7):
+                if j != self.x or i != self.y:
+                    print(" - ", end="")
+                else:
+                    print(" O ", end="")
+            print()
+        print()
+        print(self.facing)
+
     def go(self, instructions):
         for instruction in list(instructions):
             self.execute(instruction)
@@ -50,11 +61,11 @@ class Car:
 
         elif instruction == "M":
             if self.facing == "N":
-                self.y += 1
+                self.y -= 1
             elif self.facing == "E":
                 self.x += 1
             elif self.facing == "S":
-                self.y -= 1
+                self.y += 1
             elif self.facing == "W":
                 self.x -= 1
         
