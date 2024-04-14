@@ -99,6 +99,36 @@ class CarTest(unittest.TestCase):
             car = Car(3, 3, "N")
             car.go("X") 
 
+
+# 7. Test pentru a verifica n valid pentru functia execute
+    def test_execute_valid_n(self):
+        # Test with a valid positive integer
+        car = Car(3, 3, "N")
+        car.execute("R", 5)
+        self.assertEqual(car.facing, "E")
+
+# 8. Test pentru a verifica n zero pentru functia execute
+    def test_execute_zero_n(self):
+        car = Car(3, 3, "N")
+        # Test with zero
+        with self.assertRaises(ValueError):
+            car.execute("R", 0)
+
+# 9. Test pentru a verifica n negativ pentru functia execute
+    def test_execute_negative_n(self):
+        car = Car(3, 3, "N")
+        # Test with a negative integer
+        with self.assertRaises(ValueError):
+            car.execute("R", -5)
+
+# 10. Test pentru a verifica n string pentru functia execute
+    def test_execute_string_n(self):
+        car = Car(3, 3, "N")
+        # Test with a string
+        with self.assertRaises(ValueError):
+            car.execute("R", "5")
+
+
 if __name__ == '__main__':
     car = Car(1, 1, "N")
     car.print()
