@@ -186,6 +186,7 @@ class CarTest(unittest.TestCase):
 
     def test_pathCoverage(self):
         return
+    
 # Partitionare de echivalenta
 # 1. Test pentru a verifica coordonate valide
     def test_valid_coordinates(self):
