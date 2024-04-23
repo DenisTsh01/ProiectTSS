@@ -252,6 +252,57 @@ class CarTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             car.execute("R", "5")
 
+# Analiza valorilor de frontiera
+    def test_move_north_at_top_edge(self):
+        car = Car(3, 0, "N")
+        car.go("M")
+        self.assertEqual((car.x, car.y), (3, 0))
+
+    def test_move_south_at_bottom_edge(self):
+        car = Car(3, 7, "S")
+        car.go("M")
+        self.assertEqual((car.x, car.y), (3, 7))
+
+    def test_move_east_at_right_edge(self):
+        car = Car(7, 3, "E")
+        car.go("M")
+        self.assertEqual((car.x, car.y), (7, 3))
+
+    def test_move_west_at_left_edge(self):
+        car = Car(0, 3, "W")
+        car.go("M")
+        self.assertEqual((car.x, car.y), (0, 3))
+
+    def test_long_move_from_corner_to_corner(self):
+        car = Car(0, 0, "E")
+        car.go("MMMMMMMRRMMMMMMM")
+        self.assertEqual((car.x, car.y), (7, 7))
+    def test_turn_right_in_northeast_corner(self):
+        car = Car(7, 0, "N")
+        car.go("R")
+        self.assertEqual(car.facing, "E")
+        self.assertEqual((car.x, car.y), (7, 0))
+
+    def test_turn_left_in_southwest_corner(self):
+        car = Car(0, 7, "S")
+        car.go("L")
+        self.assertEqual(car.facing, "E")
+        self.assertEqual((car.x, car.y), (0, 7))
+
+    def test_sequence_moves_in_northeast_corner(self):
+        car = Car(7, 0, "S")
+        car.go("LLM")
+        self.assertEqual((car.x, car.y), (7, 0))
+
+    def test_sequence_moves_in_southwest_corner(self):
+        car = Car(0, 7, "E")
+        car.go("RRM")
+        self.assertEqual((car.x, car.y), (0, 7))
+
+    def test_complex_path_around_edges(self):
+        car = Car(0, 0, "E")
+        car.go("MMMMMMMRRMMMMMMMLLMMMMMMMRRMMMMMMM")
+        self.assertEqual((car.x, car.y), (0, 0))
 
 if __name__ == '__main__':
     car = Car(1, 1, "N")
