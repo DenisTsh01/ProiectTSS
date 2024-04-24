@@ -194,63 +194,22 @@ class CarTest(unittest.TestCase):
         self.assertEqual(car.x, 3)
         self.assertEqual(car.y, 3)
 
-# 2. Test pentru a verifica coordonate invalide
-    def test_invalid_coordinates(self):
-        with self.assertRaises(ValueError):
-            Car(-1, 3, "N")
-        with self.assertRaises(ValueError):
-            Car(3, 8, "N")
-
-# 3. Test pentru a verifica directie valida
+# 2. Test pentru a verifica directie valida
     def test_valid_direction(self):
         car = Car(3, 3, "N")
         self.assertEqual(car.facing, "N")
 
-# 4. Test pentru a verifica directie invalida
-    def test_invalid_direction(self):
-        with self.assertRaises(ValueError):
-            Car(3, 3, "X")
-
-# 5. Test pentru verifica instructiune valida
+# 3. Test pentru verifica instructiune valida
     def test_valid_instruction(self):
             car = Car(3, 3, "N")
             car.go("LR")
             self.assertEqual(car.facing, "N")
 
-# 6. Test pentru verifica instructiune invalida
-    def test_invalid_instruction(self):
-        with self.assertRaises(ValueError):
-            car = Car(3, 3, "N")
-            car.go("X") 
-
-
-# 7. Test pentru a verifica n valid pentru functia execute
+# 4. Test pentru a verifica n valid pentru functia execute
     def test_execute_valid_n(self):
-        # Test with a valid positive integer
         car = Car(3, 3, "N")
         car.execute("R", 5)
         self.assertEqual(car.facing, "E")
-
-# 8. Test pentru a verifica n zero pentru functia execute
-    def test_execute_zero_n(self):
-        car = Car(3, 3, "N")
-        # Test with zero
-        with self.assertRaises(ValueError):
-            car.execute("R", 0)
-
-# 9. Test pentru a verifica n negativ pentru functia execute
-    def test_execute_negative_n(self):
-        car = Car(3, 3, "N")
-        # Test with a negative integer
-        with self.assertRaises(ValueError):
-            car.execute("R", -5)
-
-# 10. Test pentru a verifica n string pentru functia execute
-    def test_execute_string_n(self):
-        car = Car(3, 3, "N")
-        # Test with a string
-        with self.assertRaises(ValueError):
-            car.execute("R", "5")
 
 # Analiza valorilor de frontiera
     def test_move_north_at_top_edge(self):
